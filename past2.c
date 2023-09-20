@@ -39,7 +39,7 @@ if (last != i)
 creatH(info, buffa + last, count++);
 free(buffa);
 info->histcount = count;
-while (info->histcount-- >= HIST_MAX)
+while (info->histcount-- >= MAXHISTOR)
 delete_node_at_index(&(info->history), 0);
 renumH(info);
 return (info->histcount);

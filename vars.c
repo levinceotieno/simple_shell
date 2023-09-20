@@ -41,7 +41,7 @@ j++;
 if (buffa[j] == ';')
 {
 buffa[j] = 0;
-info->buffaferType = CMD_CHAIN;
+info->buffaferType = CMDCHAINN_;
 }
 else
 {

@@ -96,12 +96,12 @@ static char buffafer[50];
 char sign = 0;
 char *ptr, *array;
 unsigned long n = num;
-if (!(flags & CONVERT_UNSIGNED) && num < 0)
+if (!(flags & UNSIGNED__) && num < 0)
 {
 n = -num;
 sign = '-';
 }
-array = (flags & CONVERT_LOWERCASE) ? "0123456789abcdef" : "0123456789ABCDEF";
+array = (flags & LOWERCASE_) ? "0123456789abcdef" : "0123456789ABCDEF";
 ptr = &buffafer[49];
 *ptr = '\0';
 while (n != 0)

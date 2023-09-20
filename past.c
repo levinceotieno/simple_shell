@@ -43,7 +43,7 @@ for (node = info->history; node; node = node->next)
 _putsfd(node->str, fd);
 _putfd('\n', fd);
 }
-_putfd(BUF_FLUSH, fd);
+_putfd(FLSHBUFF, fd);
 close(fd);
 return (1);
 }

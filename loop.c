@@ -14,7 +14,7 @@ do {
 clear_info(info);
 if (active(info))
 _puts("$ ");
-_eputchar(BUF_FLUSH);
+_eputchar(FLSHBUFF);
 r = get_input(info);
 if (r != -1)
 {

@@ -63,12 +63,12 @@ int _putchar(char c)
 {
 static int i;
 static char buffa[PRINTBUFF_SIZE];
-if (c == (char)BUF_FLUSH || i >= PRINTBUFF_SIZE)
+if (c == (char)FLSHBUFF || i >= PRINTBUFF_SIZE)
 {
 write(1, buffa, i);
 i = 0;
 }
-if (c != (char)BUF_FLUSH)
+if (c != (char)FLSHBUFF)
 buffa[i++] = c;
 return (1);
 }

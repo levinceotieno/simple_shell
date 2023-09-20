@@ -26,12 +26,12 @@ int _eputchar(char c)
 static int i;
 static char buffa[PRINTBUFF_SIZE];
 do {
-if (c == (char)BUF_FLUSH || i >= PRINTBUFF_SIZE)
+if (c == (char)FLSHBUFF || i >= PRINTBUFF_SIZE)
 {
 write(2, buffa, i);
 i = 0;
 }
-if (c != (char)BUF_FLUSH)
+if (c != (char)FLSHBUFF)
 buffa[i++] = c;
 } while (0);
 return (1);
@@ -48,12 +48,12 @@ int _putfd(char c, int fd)
 static int i;
 static char buffa[PRINTBUFF_SIZE];
 do {
-if (c == (char)BUF_FLUSH || i >= PRINTBUFF_SIZE)
+if (c == (char)FLSHBUFF || i >= PRINTBUFF_SIZE)
 {
 write(fd, buffa, i);
 i = 0;
 }
-if (c != (char)BUF_FLUSH)
+if (c != (char)FLSHBUFF)
 buffa[i++] = c;
 } while (0);
 return (1);

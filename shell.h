@@ -15,39 +15,39 @@
 /* for read/write buffafers */
 #define READ_BUF_SIZE 1024
 #define PRINTBUFF_SIZE 1024
-#define BUF_FLUSH -1
+#define FLSHBUFF -1
 
 /* for command chaining */
 #define CMD_NORM	0
 #define CMDOR_		1
 #define CMD_AND		2
-#define CMD_CHAIN	3
+#define CMDCHAINN_	3
 
 /* for convert_number() */
-#define CONVERT_LOWERCASE	1
-#define CONVERT_UNSIGNED	2
+#define LOWERCASE_	1
+#define UNSIGNED__	2
 
 /* 1 if using system getline() */
-#define USE_GETLINE 0
-#define USE_STRTOK 0
+#define GET_LINE 0
+#define STRTOKEN 0
 
 #define HIST_FILE	".simple_shell_history"
-#define HIST_MAX	4096
+#define MAXHISTOR	4096
 
 extern char **environ;
 
 
 /**
- * struct liststr - singly linked list
+ * struct string_lst - singly linked list
  * @num: the number field
  * @str: a string
  * @next: points to the next node
  */
-typedef struct liststr
+typedef struct string_lst
 {
 	int num;
 	char *str;
-	struct liststr *next;
+	struct string_lst *next;
 } list_t;
 
 /**

@@ -69,6 +69,6 @@ info->environ = NULL;
 we_free((void **)info->cmd_buffa);
 if (info->readfd > 2)
 close(info->readfd);
-_putchar(BUF_FLUSH);
+_putchar(FLSHBUFF);
 }
 }

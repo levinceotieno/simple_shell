@@ -18,7 +18,7 @@ _let_free(buffa);
 *buffa = NULL;
 signal(SIGINT, sigintHandler);
 
-#if USE_GETLINE
+#if GET_LINE
 r = getline(buffa, &len_p, stdin);
 #else
 r = _getline(info, buffa, &len_p);
@@ -58,7 +58,7 @@ static char *buffa;
 static size_t i = 0, j = 0, len = 0;
 ssize_t r = 0;
 char **buffa_p = &(info->arg), *p;
-_putchar(BUF_FLUSH);
+_putchar(FLSHBUFF);
 r = input_buffa(info, &buffa, &len);
 if (r == -1) /* EOF */
 return (-1);
@@ -153,5 +153,5 @@ void sigintHandler(__attribute__((unused))int sig_num)
 {
 _puts("\n");
 _puts("$ ");
-_putchar(BUF_FLUSH);
+_putchar(FLSHBUFF);
 }
