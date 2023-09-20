@@ -14,7 +14,7 @@ size_t len_p = 0;
 if (!*len)
 {
 /*bfree((void **)info->cmd_buf);*/
-ffree(*buf);
+ffree(buf);
 *buf = NULL;
 signal(SIGINT, sigintHandler);
 

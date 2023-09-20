@@ -54,7 +54,7 @@ return (0);
 
 int __atoi_(char *s)
 {
-int i, sign = 1, flag = 0, output;
+int i = 0, sign = 1, flag = 0, output;
 unsigned int result = 0;
 
 do {
