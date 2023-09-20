@@ -1,12 +1,12 @@
 #include "shell.h"
 
 /**
- * _myenv - prints the current environment
+ * __env - prints the current environment
  * @info: Structure containing potential arguments. Used to maintain
  *          constant function prototype.
  * Return: Always 0
  */
-int _myenv(info_t *info)
+int __env(info_t *info)
 {
 print_list_str(info->env);
 return (0);
@@ -34,12 +34,12 @@ return (NULL);
 }
 
 /**
- * _mysetenv - initialize a new environment variable,
+ * __setenv - initialize a new environment variable,
  * modify exixting one
  * @info: Structure containing potential arguments
  * Return: Always 0
  */
-int _mysetenv(info_t *info)
+int __setenv(info_t *info)
 {
 if (info->argc != 3)
 {
@@ -50,11 +50,11 @@ return (_setenv(info, info->argv[1], info->argv[2]) ? 0 : 1);
 }
 
 /**
- * _myunsetenv - remove an environment variable
+ * __unsetevv - remove an environment variable
  * @info: Structure containing potential arguments
  * Return: 0 (Success)
  */
-int _myunsetenv(info_t *info)
+int __unsetevv(info_t *info)
 {
 int i = 1;
 if (info->argc == 1)
@@ -71,11 +71,11 @@ return (0);
 }
 
 /**
- * populate_env_list - pops env linked list
+ * __envList - pops env linked list
  * @info: Structure containing potential arguments
  * Return: 0(Success)
  */
-int populate_env_list(info_t *info)
+int __envList(info_t *info)
 {
 list_t *node = NULL;
 size_t i = 0;

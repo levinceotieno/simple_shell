@@ -40,7 +40,7 @@ return (EXIT_FAILURE);
 }
 info->readfd = fd;
 }
-populate_env_list(info);
+__envList(info);
 read_history(info);
 hsh(info, av);
 return (EXIT_SUCCESS);

@@ -14,7 +14,7 @@ int builtin_ret = 0;
 while (r != -1 && builtin_ret != -2)
 {
 clear_info(info);
-if (interactive(info))
+if (active(info))
 _puts("$ ");
 _eputchar(BUF_FLUSH);
 r = get_input(info);
@@ -25,13 +25,13 @@ builtin_ret = find_builtin(info);
 if (builtin_ret == -1)
 find_cmd(info);
 }
-else if (interactive(info))
+else if (active(info))
 _putchar('\n');
 free_info(info, 0);
 }
 write_history(info);
 free_info(info, 1);
-if (!interactive(info) && info->status)
+if (!active(info) && info->status)
 exit(info->status);
 if (builtin_ret == -2)
 {
@@ -55,13 +55,13 @@ int find_builtin(info_t *info)
 {
 int i, built_in_ret = -1;
 builtin_table builtintbl[] = {
-	{"exit", _myexit},
-	{"env", _myenv},
-	{"help", _myhelp},
-	{"history", _myhistory},
-	{"setenv", _mysetenv},
-	{"unsetenv", _myunsetenv},
-	{"cd", _mycd},
+	{"exit", check_exit},
+	{"env", __env},
+	{"help", check_help},
+	{"history", past_histori},
+	{"setenv", __setenv},
+	{"unsetenv", __unsetevv},
+	{"cd", check_cd},
 	{"alias", _myalias},
 	{NULL, NULL}
 };
@@ -93,7 +93,7 @@ info->line_count++;
 info->linecount_flag = 0;
 }
 for (i = 0, k = 0; info->arg[i]; i++)
-if (!is_delim(info->arg[i], " \t\n"))
+if (!_isdelim(info->arg[i], " \t\n"))
 k++;
 if (!k)
 return;
@@ -105,7 +105,7 @@ fork_cmd(info);
 }
 else
 {
-if ((interactive(info) || _getenv(info, "PATH=")
+if ((active(info) || _getenv(info, "PATH=")
 || info->argv[0][0] == '/') && is_cmd(info, info->argv[0]))
 fork_cmd(info);
 else if (*(info->arg) != '\n')

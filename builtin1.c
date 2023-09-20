@@ -1,22 +1,22 @@
 #include "shell.h"
 /**
- * _myhistory - displays the history list
+ * past_histori - displays the history list
  * @info: Structure containing potential arguments
  * Return: 0 (Success)
  */
-int _myhistory(info_t *info)
+int past_histori(info_t *info)
 {
 print_list(info->history);
 return (0);
 }
 
 /**
- * unset_alias - sets alias to string
+ * remov_alias - sets alias to string
  * @info: parameter struct
  * @str: str alias
  * Return: Always 0 success, 1 on error
  */
-int unset_alias(info_t *info, char *str)
+int remov_alias(info_t *info, char *str)
 {
 char *p, c;
 int ret;
@@ -30,12 +30,12 @@ return (ret);
 }
 
 /**
- * set_alias - sets alias to string
+ * add_alias - sets alias to string
  * @info: parameter struct
  * @str: str alias
  * Return: 0 (success), 1 on error
  */
-int set_alias(info_t *info, char *str)
+int add_alias(info_t *info, char *str)
 {
 char *p;
 p = _strchr(str, '=');
@@ -43,11 +43,11 @@ if (!p)
 return (1);
 if (!*++p)
 {
-return (unset_alias(info, str));
+return (remov_alias(info, str));
 }
 else
 {
-unset_alias(info, str);
+remov_alias(info, str);
 }
 return (add_node_end(&(info->alias), str, 0) == NULL);
 }
@@ -102,7 +102,7 @@ while (info->argv[i])
 {
 p = _strchr(info->argv[i], '=');
 if (p)
-set_alias(info, info->argv[i]);
+add_alias(info, info->argv[i]);
 else
 print_alias(node_starts_with(info->alias, info->argv[i], '='));
 i++;
