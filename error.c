@@ -24,15 +24,15 @@ _eputchar(str[i]);
 int _eputchar(char c)
 {
 static int i;
-static char buf[WRITE_BUF_SIZE];
+static char buffa[PRINTBUFF_SIZE];
 do {
-if (c == (char)BUF_FLUSH || i >= WRITE_BUF_SIZE)
+if (c == (char)BUF_FLUSH || i >= PRINTBUFF_SIZE)
 {
-write(2, buf, i);
+write(2, buffa, i);
 i = 0;
 }
 if (c != (char)BUF_FLUSH)
-buf[i++] = c;
+buffa[i++] = c;
 } while (0);
 return (1);
 }
@@ -46,15 +46,15 @@ return (1);
 int _putfd(char c, int fd)
 {
 static int i;
-static char buf[WRITE_BUF_SIZE];
+static char buffa[PRINTBUFF_SIZE];
 do {
-if (c == (char)BUF_FLUSH || i >= WRITE_BUF_SIZE)
+if (c == (char)BUF_FLUSH || i >= PRINTBUFF_SIZE)
 {
-write(fd, buf, i);
+write(fd, buffa, i);
 i = 0;
 }
 if (c != (char)BUF_FLUSH)
-buf[i++] = c;
+buffa[i++] = c;
 } while (0);
 return (1);
 }

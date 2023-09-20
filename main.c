@@ -41,7 +41,7 @@ return (EXIT_FAILURE);
 info->readfd = fd;
 }
 __envList(info);
-read_history(info);
+readH(info);
 hsh(info, av);
 return (EXIT_SUCCESS);
 }

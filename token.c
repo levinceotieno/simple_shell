@@ -1,35 +1,39 @@
 #include "shell.h"
 
 /**
- * **strtow - splits a string into words. Repeat delimiters are ignored
- * @str: the input string
- * @d: the delimeter string
- * Return: a pointer to an array of strings, or NULL on failure
+ * **tokstr - it split a str to words
+ * @str: input str
+ * @d: delimeter str
+ * Return: ptr 2 an array of strs
  */
-
-char **strtow(char *str, char *d)
+char **tokstr(char *str, char *d)
 {
-int i, j, k, m, numwords = 0;
+int i = 0, j = 0, k = 0, m = 0, numWtn = 0;
 char **s;
 if (str == NULL || str[0] == 0)
 return (NULL);
 if (!d)
 d = " ";
-for (i = 0; str[i] != '\0'; i++)
+while (str[i] != '\0')
+{
 if (!_isdelim(str[i], d) && (_isdelim(str[i + 1], d) || !str[i + 1]))
-numwords++;
-if (numwords == 0)
+numWtn++;
+i++;
+}
+if (!_isdelim(str[i], d) && (_isdelim(str[i + 1], d) || !str[i + 1]))
+numWtn++;
+if (numWtn == 0)
 return (NULL);
-s = malloc((1 + numwords) * sizeof(char *));
+s = malloc((1 + numWtn) * sizeof(char *));
 if (!s)
 return (NULL);
-for (i = 0, j = 0; j < numwords; j++)
+for (i = 0, j = 0; j < numWtn; j++)
 {
 while (_isdelim(str[i], d))
 i++;
 k = 0;
-while (!_isdelim(str[i + k], d) && str[i + k])
-k++;
+for (k = 0; !_isdelim(str[i + k], d) && str[i + k]; k++)
+;
 s[j] = malloc((k + 1) * sizeof(char));
 if (!s[j])
 {
@@ -47,33 +51,35 @@ return (s);
 }
 
 /**
- * **strtow2 - splits a string into words
- * @str: the input string
- * @d: the delimeter
- * Return: a pointer to an array of strings, or NULL on failure
+ * **tokstr2 - splitting string into words
+ * @str: input str
+ * @d: delimeter
+ * Return: ptr 2 an array of strs
  */
-char **strtow2(char *str, char d)
+char **tokstr2(char *str, char d)
 {
-int i, j, k, m, numwords = 0;
+int i, j, k, m, numWtn = 0;
 char **s;
 if (str == NULL || str[0] == 0)
 return (NULL);
 for (i = 0; str[i] != '\0'; i++)
+{
 if ((str[i] != d && str[i + 1] == d) ||
 (str[i] != d && !str[i + 1]) || str[i + 1] == d)
-numwords++;
-if (numwords == 0)
+numWtn++;
+}
+if (numWtn == 0)
 return (NULL);
-s = malloc((1 + numwords) * sizeof(char *));
+s = malloc((1 + numWtn) * sizeof(char *));
 if (!s)
 return (NULL);
-for (i = 0, j = 0; j < numwords; j++)
+for (i = 0, j = 0; j < numWtn; j++)
 {
 while (str[i] == d && str[i] != d)
 i++;
-k = 0;
-while (str[i + k] != d && str[i + k] && str[i + k] != d)
-k++;
+for (k = 0; str[i + k] != d && str[i + k] &&
+str[i + k] != d; k++)
+;
 s[j] = malloc((k + 1) * sizeof(char));
 if (!s[j])
 {
@@ -82,8 +88,12 @@ free(s[k]);
 free(s);
 return (NULL);
 }
-for (m = 0; m < k; m++)
+m = 0;
+while (m < k)
+{
 s[j][m] = str[i++];
+m++;
+}
 s[j][m] = 0;
 }
 s[j] = NULL;

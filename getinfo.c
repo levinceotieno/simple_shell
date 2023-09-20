@@ -23,7 +23,7 @@ int i = 0;
 info->fname = av[0];
 if (info->arg)
 {
-info->argv = strtow(info->arg, " \t");
+info->argv = tokstr(info->arg, " \t");
 if (!info->argv)
 {
 info->argv = malloc(sizeof(char *) * 2);
@@ -51,12 +51,12 @@ replace_vars(info);
  */
 void free_info(info_t *info, int all)
 {
-ffree(info->argv);
+_let_free(info->argv);
 info->argv = NULL;
 info->path = NULL;
 if (all)
 {
-if (!info->cmd_buf)
+if (!info->cmd_buffa)
 free(info->arg);
 if (info->env)
 free_list(&(info->env));
@@ -64,9 +64,9 @@ if (info->history)
 free_list(&(info->history));
 if (info->alias)
 free_list(&(info->alias));
-ffree(info->environ);
+_let_free(info->environ);
 info->environ = NULL;
-bfree((void **)info->cmd_buf);
+we_free((void **)info->cmd_buffa);
 if (info->readfd > 2)
 close(info->readfd);
 _putchar(BUF_FLUSH);

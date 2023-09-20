@@ -1,31 +1,26 @@
 #include "shell.h"
 
 /**
- * _strcpy - copies a string
- * @dest: the destination
- * @src: the source
- *
- * Return: pointer to destination
+ * _strcpy - copying str
+ * @dest: destination
+ * @src: source
+ * Return: ptr 2 dest
  */
 char *_strcpy(char *dest, char *src)
 {
 int i = 0;
 if (dest == src || src == 0)
 return (dest);
-while (src[i])
-{
+for (i = 0; src[i]; i++)
 dest[i] = src[i];
-i++;
-}
 dest[i] = 0;
 return (dest);
 }
 
 /**
- * _strdup - duplicates a string
- * @str: the string to duplicate
- *
- * Return: pointer to the duplicated string
+ * _strdup - duplicates str
+ * @str: str 2 duplicate
+ * Return: ptr 2 duplicated str
  */
 char *_strdup(const char *str)
 {
@@ -44,41 +39,37 @@ return (ret);
 }
 
 /**
- * _puts - prints an input string
- * @str: the string to be printed
- *
- * Return: Nothing
+ * _puts - prints the input string
+ * @str: string
+ * Return: void
  */
 void _puts(char *str)
 {
-int i = 0;
+int i;
 if (!str)
 return;
-while (str[i] != '\0')
+for (i = 0; str[i] != '\0'; i++)
 {
 _putchar(str[i]);
-i++;
 }
 }
 
 /**
- * _putchar - writes the character c to stdout
- * @c: The character to print
- *
- * Return: On success 1.
- * On error, -1 is returned, and errno is set appropriately.
+ * _putchar - prints the character c to stdout
+ * @c: character
+ * Return: 1 (Success)
  */
 int _putchar(char c)
 {
 static int i;
-static char buf[WRITE_BUF_SIZE];
-if (c == (char)BUF_FLUSH || i >= WRITE_BUF_SIZE)
+static char buffa[PRINTBUFF_SIZE];
+if (c == (char)BUF_FLUSH || i >= PRINTBUFF_SIZE)
 {
-write(1, buf, i);
+write(1, buffa, i);
 i = 0;
 }
 if (c != (char)BUF_FLUSH)
-buf[i++] = c;
+buffa[i++] = c;
 return (1);
 }
 

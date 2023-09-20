@@ -12,14 +12,14 @@
 #include <fcntl.h>
 #include <errno.h>
 
-/* for read/write buffers */
+/* for read/write buffafers */
 #define READ_BUF_SIZE 1024
-#define WRITE_BUF_SIZE 1024
+#define PRINTBUFF_SIZE 1024
 #define BUF_FLUSH -1
 
 /* for command chaining */
 #define CMD_NORM	0
-#define CMD_OR		1
+#define CMDOR_		1
 #define CMD_AND		2
 #define CMD_CHAIN	3
 
@@ -67,8 +67,8 @@ typedef struct liststr
  * @alias: the alias node
  * @env_changed: on if environ was changed
  * @status: the return status of the last exec'd command
- * @cmd_buf: address of pointer to cmd_buf, on if chaining
- * @cmd_buf_type: CMD_type ||, &&, ;
+ * @cmd_buffa: address of pointer to cmd_buffa, on if chaining
+ * @buffaferType: CMD_type ||, &&, ;
  * @readfd: the fd from which to read line input
  * @histcount: the history line number count
  */
@@ -89,8 +89,8 @@ typedef struct passinfo
 	int env_changed;
 	int status;
 
-	char **cmd_buf; /* pointer to cmd ; chain buffer, for memory mangement */
-	int cmd_buf_type; /* CMD_type ||, &&, ; */
+	char **cmd_buffa; /* pointer to cmd ; chain buffafer, for memory mangement */
+	int buffaferType; /* CMD_type ||, &&, ; */
 	int readfd;
 	int histcount;
 } info_t;
@@ -114,13 +114,13 @@ typedef struct builtin
 /* toem_shloop.c */
 int hsh(info_t *, char **);
 int find_builtin(info_t *);
-void find_cmd(info_t *);
-void fork_cmd(info_t *);
+void cfind(info_t *);
+void cfork(info_t *);
 
 /* toem_parser.c */
 int is_cmd(info_t *, char *);
-char *dup_chars(char *, int, int);
-char *find_path(info_t *, char *, char *);
+char *dupcateChar(char *, int, int);
+char *fi_ndpath(info_t *, char *, char *);
 
 /* loophsh.c */
 int loophsh(char **);
@@ -134,7 +134,7 @@ int _putsfd(char *str, int fd);
 /* toem_string.c */
 int _strlen(char *);
 int _strcmp(char *, char *);
-char *starts_with(const char *, const char *);
+char *beginWth(const char *, const char *);
 char *_strcat(char *, char *);
 
 /* toem_string1.c */
@@ -149,16 +149,16 @@ char *_strncat(char *, char *, int);
 char *_strchr(char *, char);
 
 /* toem_tokenizer.c */
-char **strtow(char *, char *);
-char **strtow2(char *, char);
+char **tokstr(char *, char *);
+char **tokstr2(char *, char);
 
-/* toem_realloc.c */
-char *_memset(char *, char, unsigned int);
-void ffree(char **);
-void *_realloc(void *, unsigned int, unsigned int);
+/* toem__rrealloC.c */
+char *set_mem(char *, char, unsigned int);
+void _let_free(char **);
+void *__rrealloC(void *, unsigned int, unsigned int);
 
 /* toem_memory.c */
-int bfree(void **);
+int we_free(void **);
 
 /* toem __atoi_.c */
 int active(info_t *);
@@ -205,11 +205,11 @@ int _unsetenv(info_t *, char *);
 int _setenv(info_t *, char *, char *);
 
 /* toem_history.c */
-char *get_history_file(info_t *info);
-int write_history(info_t *info);
-int read_history(info_t *info);
-int build_history_list(info_t *info, char *buf, int linecount);
-int renumber_history(info_t *info);
+char *histopast_file(info_t *info);
+int past_write(info_t *info);
+int readH(info_t *info);
+int creatH(info_t *info, char *buffa, int linecount);
+int renumH(info_t *info);
 
 /* toem_lists.c */
 list_t *add_node(list_t **, const char *, int);
@@ -222,11 +222,11 @@ void free_list(list_t **);
 size_t list_len(const list_t *);
 char **list_to_strings(list_t *);
 size_t print_list(const list_t *);
-list_t *node_starts_with(list_t *, char *, char);
+list_t *node_beginWth(list_t *, char *, char);
 ssize_t get_node_index(list_t *, list_t *);
 
 /* toem_vars.c */
-int is_chain(info_t *, char *, size_t *);
+int tag_c(info_t *, char *, size_t *);
 void check_chain(info_t *, char *, size_t *, size_t, size_t);
 int replace_alias(info_t *);
 int replace_vars(info_t *);

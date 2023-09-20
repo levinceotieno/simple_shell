@@ -1,34 +1,52 @@
 #include "shell.h"
-
 /**
-* is_chain - test if current char in buffer is a chain delimeter
- 7H
- * @buf: the char buffer
- * @p: address of current position in buf
- *5
- * Return: 1 if chain delimeter, 0 otherwise
+ * tag_c - checks the current char if is a chain delimiter
+ * @info: info struct
+ * @buffa: char buffafer
+ * @p: address of the current position in buffa
+ * Return: 1 chain delimiter, else 0
  */
-int is_chain(info_t *info, char *buf, size_t *p)
+int tag_c(info_t *info, char *buffa, size_t *p)
 {
 size_t j = *p;
-if (buf[j] == '|' && buf[j + 1] == '|')
+while (buffa[j] && (buffa[j] == '|' || buffa[j] == '&'))
 {
-buf[j] = 0;
+if (buffa[j] == '|')
+{
+if (buffa[j + 1] == '|')
+{
+buffa[j] = 0;
 j++;
-info->cmd_buf_type = CMD_OR;
-}
-else if (buf[j] == '&' && buf[j + 1] == '&')
-{
-buf[j] = 0;
-j++;
-}
-else if (buf[j] == ';') /* found end of this command */
-{
-buf[j] = 0; /* replace semicolon with null */
-info->cmd_buf_type = CMD_CHAIN;
+info->buffaferType = CMDOR_;
 }
 else
-return (0);
+{
+return (0); /* Not a valid chain delimiter */
+}
+}
+else if (buffa[j] == '&')
+{
+if (buffa[j + 1] == '&')
+{
+buffa[j] = 0;
+j++;
+}
+else
+{
+return (0); /* Not a valid chain delimiter */
+}
+}
+j++;
+}
+if (buffa[j] == ';')
+{
+buffa[j] = 0;
+info->buffaferType = CMD_CHAIN;
+}
+else
+{
+return (0); /* Not a valid chain delimiter */
+}
 *p = j;
 return (1);
 }

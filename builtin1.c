@@ -24,7 +24,7 @@ p = _strchr(str, '=');
 c = (p) ? *p : '\0';
 *p = 0;
 ret = delete_node_at_index(&(info->alias),
-get_node_index(info->alias, node_starts_with(info->alias, str, -1)));
+get_node_index(info->alias, node_beginWth(info->alias, str, -1)));
 *p = c;
 return (ret);
 }
@@ -104,7 +104,7 @@ p = _strchr(info->argv[i], '=');
 if (p)
 add_alias(info, info->argv[i]);
 else
-print_alias(node_starts_with(info->alias, info->argv[i], '='));
+print_alias(node_beginWth(info->alias, info->argv[i], '='));
 i++;
 }
 return (0);

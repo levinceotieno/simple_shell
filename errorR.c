@@ -92,7 +92,7 @@ return (count);
  */
 char *convert_number(long int num, int base, int flags)
 {
-static char buffer[50];
+static char buffafer[50];
 char sign = 0;
 char *ptr, *array;
 unsigned long n = num;
@@ -102,7 +102,7 @@ n = -num;
 sign = '-';
 }
 array = (flags & CONVERT_LOWERCASE) ? "0123456789abcdef" : "0123456789ABCDEF";
-ptr = &buffer[49];
+ptr = &buffafer[49];
 *ptr = '\0';
 while (n != 0)
 {
@@ -116,18 +116,18 @@ return (ptr);
 
 /**
  * remove_comments - function replaces first instance of '#' with '\0'
- * @buf: address of the string to modify
+ * @buffa: address of the string to modify
  *
  * Return: Always 0;
  */
-void remove_comments(char *buf)
+void remove_comments(char *buffa)
 {
 int i;
 
-for (i = 0; buf[i] != '\0'; i++)
-if (buf[i] == '#' && (!i || buf[i - 1] == ' '))
+for (i = 0; buffa[i] != '\0'; i++)
+if (buffa[i] == '#' && (!i || buffa[i - 1] == ' '))
 {
-buf[i] = '\0';
+buffa[i] = '\0';
 break;
 }
 }

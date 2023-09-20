@@ -24,7 +24,7 @@ list_t *node;
 char *p;
 for (node = info->env; node; node = node->next)
 {
-p = starts_with(node->str, name);
+p = beginWth(node->str, name);
 if (p && *p)
 {
 return (p);

@@ -31,9 +31,9 @@ return (-2);
  */
 int check_cd(info_t *info)
 {
-char *s, *dir, buffer[1024];
+char *s, *dir, buffafer[1024];
 int chdir_ret;
-s = getcwd(buffer, 1024);
+s = getcwd(buffafer, 1024);
 if (!s)
 _puts("TODO: >>getcwd failure emsg here<<\n");
 if (!info->argv[1]) {
@@ -65,7 +65,7 @@ chdir_ret = chdir(info->argv[1]);
 chdir_ret == -1 ? (print_error(info, "can't cd to "),
 _eputs(info->argv[1]), _eputchar('\n'))
 : (_setenv(info, "OLDPWD", _getenv(info, "PWD=")),
-_setenv(info, "PWD", getcwd(buffer, 1024)));
+_setenv(info, "PWD", getcwd(buffafer, 1024)));
 return 0;
 }
 

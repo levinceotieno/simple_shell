@@ -72,18 +72,18 @@ return (i);
 }
 
 /**
- * node_starts_with - returns node whose string starts with prefix
+ * node_beginWth - returns node whose string starts with prefix
  * @node: ptr to list head
  * @prefix: str to match
  * @c: nxt char after prefix to match
  * Return: match node or null
  */
-list_t *node_starts_with(list_t *node, char *prefix, char c)
+list_t *node_beginWth(list_t *node, char *prefix, char c)
 {
 char *p = NULL;
 for (; node; node = node->next)
 {
-p = starts_with(node->str, prefix);
+p = beginWth(node->str, prefix);
 if (p && ((c == (char)-1) || (*p == c)))
 return (node);
 }

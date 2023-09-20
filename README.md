@@ -26,7 +26,7 @@ The tasks are:
 
 6. Write your own getline function
 
-Use a buffer to read many chars at once and call the least possible the read system call.
+Use a buffafer to read many chars at once and call the least possible the read system call.
 You will need to use static variables.
 You are not allowed to use getline.
 
