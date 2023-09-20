@@ -16,11 +16,11 @@ return (i);
 }
 
 /**
- * list_to_strings - returns an array of strings of the list->str
+ * str_listed - returns an array of strings of the list->str
  * @head: ptr to 1st node
  * Return: array of strs
  */
-char **list_to_strings(list_t *head)
+char **str_listed(list_t *head)
 {
 list_t *node = head;
 size_t i = list_len(head), j;

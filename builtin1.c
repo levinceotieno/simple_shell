@@ -78,11 +78,11 @@ return (0);
 }
 
 /**
- * _myalias - imitate the alias builtin
+ * theAlias - imitate the alias builtin
  * @info: Structure containing potential arguments
  *  Return: 0 (Success)
  */
-int _myalias(info_t *info)
+int theAlias(info_t *info)
 {
 int i = 0;
 char *p = NULL;

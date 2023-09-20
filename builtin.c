@@ -36,7 +36,8 @@ int chdir_ret;
 s = getcwd(buffafer, 1024);
 if (!s)
 _puts("TODO: >>getcwd failure emsg here<<\n");
-if (!info->argv[1]) {
+if (!info->argv[1])
+{
 dir = _getenv(info, "HOME=");
 if (!dir)
 {
@@ -53,7 +54,7 @@ if (!_getenv(info, "OLDPWD="))
 {
 _puts(s);
 _putchar('\n');
-return 1;
+return (1);
 }
 _puts(_getenv(info, "OLDPWD=")), _putchar('\n');
 chdir_ret = chdir((dir = _getenv(info, "OLDPWD=")) ? dir : "/");
@@ -66,7 +67,7 @@ chdir_ret == -1 ? (print_error(info, "can't cd to "),
 _eputs(info->argv[1]), _eputchar('\n'))
 : (_setenv(info, "OLDPWD", _getenv(info, "PWD=")),
 _setenv(info, "PWD", getcwd(buffafer, 1024)));
-return 0;
+return (0);
 }
 
 /**

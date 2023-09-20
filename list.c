@@ -128,7 +128,7 @@ return (0);
  * @head_ptr: addrrs of pointer to head node
  * Return: void
  */
-void free_list (list_t **head_ptr)
+void free_list(list_t **head_ptr)
 {
 list_t *node, *next_node, *head;
 if (!head_ptr || !*head_ptr)

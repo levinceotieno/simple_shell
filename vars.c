@@ -20,9 +20,7 @@ j++;
 info->buffaferType = CMDOR_;
 }
 else
-{
 return (0); /* Not a valid chain delimiter */
-}
 }
 else if (buffa[j] == '&')
 {
@@ -32,9 +30,7 @@ buffa[j] = 0;
 j++;
 }
 else
-{
 return (0); /* Not a valid chain delimiter */
-}
 }
 j++;
 }
@@ -44,9 +40,7 @@ buffa[j] = 0;
 info->buffaferType = CMDCHAINN_;
 }
 else
-{
 return (0); /* Not a valid chain delimiter */
-}
 *p = j;
 return (1);
 }

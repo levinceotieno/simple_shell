@@ -60,12 +60,12 @@ return (1);
 }
 
 /**
- * _putsfd - prints an input string
+ * fd_puts - prints an input string
  * @str: the string to be printed
  * @fd: filedescriptor to write to
  * Return: numb of chars put
  */
-int _putsfd(char *str, int fd)
+int fd_puts(char *str, int fd)
 {
 int i, count = 0;
 if (!str)

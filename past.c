@@ -40,7 +40,7 @@ if (fd == -1)
 return (-1);
 for (node = info->history; node; node = node->next)
 {
-_putsfd(node->str, fd);
+fd_puts(node->str, fd);
 _putfd('\n', fd);
 }
 _putfd(FLSHBUFF, fd);

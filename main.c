@@ -42,7 +42,7 @@ info->readfd = fd;
 }
 __envList(info);
 readH(info);
-hsh(info, av);
+_ex(info, av);
 return (EXIT_SUCCESS);
 }
 

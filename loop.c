@@ -1,17 +1,17 @@
 #include "shell.h"
 
 /**
- * hsh - main shell loop
+ * _ex - main shell loop
  * @info: parameter return info struct
  * @av: the argument vector from main()
  * Return: 0 success, 1 error
  */
-int hsh(info_t *info, char **av)
+int _ex(info_t *info, char **av)
 {
 ssize_t r = 0;
 int builtin_ret = 0;
 do {
-clear_info(info);
+informedEx(info);
 if (active(info))
 _puts("$ ");
 _eputchar(FLSHBUFF);
@@ -59,7 +59,7 @@ builtin_table builtintbl[] = {
 	{"setenv", __setenv},
 	{"unsetenv", __unsetevv},
 	{"cd", check_cd},
-	{"alias", _myalias},
+	{"alias", theAlias},
 	{NULL, NULL}
 };
 

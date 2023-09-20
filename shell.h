@@ -112,7 +112,7 @@ typedef struct builtin
 
 
 /* toem_shloop.c */
-int hsh(info_t *, char **);
+int _ex(info_t *, char **);
 int find_builtin(info_t *);
 void cfind(info_t *);
 void cfork(info_t *);
@@ -122,14 +122,14 @@ int is_cmd(info_t *, char *);
 char *dupcateChar(char *, int, int);
 char *fi_ndpath(info_t *, char *, char *);
 
-/* loophsh.c */
-int loophsh(char **);
+/* loop_ex.c */
+int loop_ex(char **);
 
 /* toem_errors.c */
 void _eputs(char *);
 int _eputchar(char);
 int _putfd(char c, int fd);
-int _putsfd(char *str, int fd);
+int fd_puts(char *str, int fd);
 
 /* toem_string.c */
 int _strlen(char *);
@@ -180,7 +180,7 @@ int check_help(info_t *);
 
 /* toem_builtin1.c */
 int past_histori(info_t *);
-int _myalias(info_t *);
+int theAlias(info_t *);
 
 /*toem_getline.c */
 ssize_t get_input(info_t *);
@@ -188,7 +188,7 @@ int _getline(info_t *, char **, size_t *);
 void sigintHandler(int);
 
 /* toem_getinfo.c */
-void clear_info(info_t *);
+void informedEx(info_t *);
 void set_info(info_t *, char **);
 void free_info(info_t *, int);
 
@@ -220,7 +220,7 @@ void free_list(list_t **);
 
 /* toem_lists1.c */
 size_t list_len(const list_t *);
-char **list_to_strings(list_t *);
+char **str_listed(list_t *);
 size_t print_list(const list_t *);
 list_t *node_beginWth(list_t *, char *, char);
 ssize_t get_node_index(list_t *, list_t *);

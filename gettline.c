@@ -44,36 +44,33 @@ return (r);
 /**
  * get_input - gets a line minus the newline
  * @info: parameter struct
- *
  * Return: bytes read
  */
-/**
- * get_input - gets a line minus the newline
- * @info: parameter struct
- *
- * Return: bytes read
- */
-ssize_t get_input(info_t *info) {
+ssize_t get_input(info_t *info)
+{
 static char *buffa;
-static size_t i = 0, j = 0, len = 0;
+static size_t i, j, len;
 ssize_t r = 0;
 char **buffa_p = &(info->arg), *p;
 _putchar(FLSHBUFF);
 r = input_buffa(info, &buffa, &len);
 if (r == -1) /* EOF */
 return (-1);
-if (len) {
+if (len)
+{
 j = i;
 p = buffa + i; /* get pointer for return */
 check_chain(info, buffa, &j, i, len);
-while (j < len) {
+while (j < len)
+{
 if (tag_c(info, buffa, &j))
 break;
 j++;
 }
 
 i = j + 1; /* increment past nulled ';'' */
-if (i >= len) {
+if (i >= len)
+{
 i = len = 0; /* reset position and length */
 info->buffaferType = CMD_NORM;
 }

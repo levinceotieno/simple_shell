@@ -24,7 +24,7 @@ if (!_isdelim(str[i], d) && (_isdelim(str[i + 1], d) || !str[i + 1]))
 numWtn++;
 if (numWtn == 0)
 return (NULL);
-s = malloc((1 + numWtn) * sizeof(char *));
+s = malloc((1 + numWtn) *sizeof(char *));
 if (!s)
 return (NULL);
 for (i = 0, j = 0; j < numWtn; j++)
@@ -70,7 +70,7 @@ numWtn++;
 }
 if (numWtn == 0)
 return (NULL);
-s = malloc((1 + numWtn) * sizeof(char *));
+s = malloc((1 + numWtn) *sizeof(char *));
 if (!s)
 return (NULL);
 for (i = 0, j = 0; j < numWtn; j++)

@@ -51,7 +51,6 @@ return (0);
  * @s: string to be converted
  * Return: 0 if no num, converted number if otherwise
  */
-
 int __atoi_(char *s)
 {
 int i = 0, sign = 1, flag = 0, output;
@@ -71,11 +70,10 @@ else if (flag == 1)
 flag = 2;
 }
 i++;
-}
-while (s[i - 1] != '\0' && flag != 2);
+} while (s[i - 1] != '\0' && flag != 2);
 if (sign == -1)
 output = -result;
 else
 output = result;
-return output;
+return (output);
 }
