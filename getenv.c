@@ -32,7 +32,7 @@ do {
 p = beginWth(node->str, var);
 if (p && *p == '=')
 {
-info->env_changed = delete_node_at_index(&(info->env), i);
+info->env_changed = remov_nodeAtIndex(&(info->env), i);
 i = 0;
 node = info->env;
 continue;
@@ -76,7 +76,7 @@ return (0);
 }
 node = node->next;
 } while (node);
-add_node_end(&(info->env), buffa, 0);
+plusNode_end(&(info->env), buffa, 0);
 free(buffa);
 info->env_changed = 1;
 return (0);

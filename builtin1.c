@@ -23,8 +23,8 @@ int ret;
 p = _strchr(str, '=');
 c = (p) ? *p : '\0';
 *p = 0;
-ret = delete_node_at_index(&(info->alias),
-get_node_index(info->alias, node_beginWth(info->alias, str, -1)));
+ret = remov_nodeAtIndex(&(info->alias),
+nodeIndex(info->alias, node_beginWth(info->alias, str, -1)));
 *p = c;
 return (ret);
 }
@@ -49,7 +49,7 @@ else
 {
 remov_alias(info, str);
 }
-return (add_node_end(&(info->alias), str, 0) == NULL);
+return (plusNode_end(&(info->alias), str, 0) == NULL);
 }
 
 /**

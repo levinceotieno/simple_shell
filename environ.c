@@ -8,7 +8,7 @@
  */
 int __env(info_t *info)
 {
-print_list_str(info->env);
+listStr_print(info->env);
 return (0);
 }
 
@@ -81,7 +81,7 @@ list_t *node = NULL;
 size_t i = 0;
 while (environ[i])
 {
-add_node_end(&node, environ[i], 0);
+plusNode_end(&node, environ[i], 0);
 i++;
 }
 info->env = node;

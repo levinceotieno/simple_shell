@@ -51,7 +51,7 @@ return (builtin_ret);
 int find_builtin(info_t *info)
 {
 int i, built_in_ret = -1;
-builtin_table builtintbl[] = {
+buitinStruc_ble builtintbl[] = {
 	{"exit", check_exit},
 	{"env", __env},
 	{"help", check_help},

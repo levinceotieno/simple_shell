@@ -4,8 +4,7 @@
  * add_node - adds a node to the start of the list
  * @head: address of pointer to head node
  * @str: str field of node
- * @num: node index used by history
- *
+ * @num: node index used by histori
  * Return: size of list
  */
 list_t *add_node(list_t **head, const char *str, int num)
@@ -33,14 +32,13 @@ return (new_head);
 }
 
 /**
- * add_node_end - adds a node to the end of the list
+ * plusNode_end - adds a node to the end of the list
  * @head: address of pointer to head node
  * @str: str field of node
- * @num: node index used by history
- *
+ * @num: node index used by histori
  * Return: size of list
  */
-list_t *add_node_end(list_t **head, const char *str, int num)
+list_t *plusNode_end(list_t **head, const char *str, int num)
 {
 list_t *new_node, *node;
 if (!head)
@@ -72,11 +70,11 @@ return (new_node);
 }
 
 /**
- * print_list_str - only prints the str element of a list_t linked list
+ * listStr_print - only prints the str element of a list_t linked list
  * @h: pointer to 1st_node
  * Return: size of list
  */
-size_t print_list_str(const list_t *h)
+size_t listStr_print(const list_t *h)
 {
 size_t i = 0;
 for (; h != NULL; h = h->next)
@@ -88,58 +86,3 @@ i++;
 return (i);
 }
 
-/**
- * delete_node_at_index - deletes node at given index
- * @head: address of ptr to 1st node
- * @index: index of node to delete
- * Return: 1 success, 0 failure
- */
-int delete_node_at_index(list_t **head, unsigned int index)
-{
-list_t *node, *prev_node;
-unsigned int i;
-if (!head || !*head)
-return (0);
-if (index == 0)
-{
-node = *head;
-*head = (*head)->next;
-free(node->str);
-free(node);
-return (1);
-}
-
-prev_node = *head;
-for (i = 0, node = *head; node; i++, node = node->next)
-{
-if (i == index)
-{
-prev_node->next = node->next;
-free(node->str);
-free(node);
-return (1);
-}
-}
-return (0);
-}
-
-/**
- * free_list - free all nodesof list
- * @head_ptr: addrrs of pointer to head node
- * Return: void
- */
-void free_list(list_t **head_ptr)
-{
-list_t *node, *next_node, *head;
-if (!head_ptr || !*head_ptr)
-return;
-head = *head_ptr;
-node = head;
-for (node = head; node; node = next_node)
-{
-next_node = node->next;
-free(node->str);
-free(node);
-}
-*head_ptr = NULL;
-}

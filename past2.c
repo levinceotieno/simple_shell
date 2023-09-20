@@ -40,7 +40,7 @@ creatH(info, buffa + last, count++);
 free(buffa);
 info->histcount = count;
 while (info->histcount-- >= MAXHISTOR)
-delete_node_at_index(&(info->history), 0);
+remov_nodeAtIndex(&(info->history), 0);
 renumH(info);
 return (info->histcount);
 }
@@ -57,7 +57,7 @@ int creatH(info_t *info, char *buffa, int linecount)
 list_t *node = NULL;
 if (info->history)
 node = info->history;
-add_node_end(&node, buffa, linecount);
+plusNode_end(&node, buffa, linecount);
 if (!info->history)
 info->history = node;
 return (0);
