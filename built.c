@@ -6,7 +6,7 @@
  * Return: status
  */
 
-int cd_only(cmd_t varComnd)
+int cd_only(cmand_t varComnd)
 {
 int status = 0;
 int st;
@@ -30,7 +30,7 @@ st = chdir((const char *)dir_name);
 if (st == -1)
 {
 dprintf(STDERR_FILENO, "%s: %d: cd: can't cd to %s\n",
-varComnd.prg_name, varComnd.cmd_no, dir_name);
+varComnd.f_name, varComnd.cmand_no, dir_name);
 varComnd.status = errno;
 status = errno;
 return (status);

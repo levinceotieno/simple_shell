@@ -19,52 +19,52 @@
 /* Struct */
 
 /**
- * struct command_var - struct of command variables
+ * struct varableCmd - struct of command variables
  * @cmd: command
- * @cmd_no: command number
+ * @cmand_no: command number
  * @status: execution status
- * @prg_name: program name
+ * @f_name: program name
  * @env: environment variables
  */
 
-typedef struct command_var
+typedef struct varableCmd
 {
 	char **cmd;
-	int cmd_no;
+	int cmand_no;
 	int status;
-	char *prg_name;
+	char *f_name;
 	char **env;
-} cmd_t;
+} cmand_t;
 
 /**
- * struct builtin_t - this is a structure of funtion pointers for built
+ * struct builtin_t - this is a struct of funtion pointers for built
  * builtin commands
- * @cmd_n: command name of type char *
+ * @cmand_n: command name of type char *
  * @cmd: function pointer
  */
 typedef struct builtin_t
 {
-	char *cmd_n;
-	int (*cmd)(cmd_t varComnd);
+	char *cmand_n;
+	int (*cmd)(cmand_t varComnd);
 } built_t;
 
 extern char **environ;
 /* path*/
 char *_which(char *);
-int run_cmd(cmd_t);
+int run_cmd(cmand_t);
 
 char **tokenize(char *, const char *);
 int is_builtin(char *command);
-int exec_builtin(cmd_t);
+int exec_builtin(cmand_t);
 
 /*alloc memory*/
 void twodfre(char **);
 char *_strtok(char *, char *);
 
 /* builtin functions*/
-int (*get_builtin(char **))(cmd_t);
-int __exit(cmd_t);
-int cd_only(cmd_t);
+int (*get_builtin(char **))(cmand_t);
+int __exit(cmand_t);
+int cd_only(cmand_t);
 int _isdigit(int);
 int _atoi(char *str);
 
@@ -81,12 +81,12 @@ unsigned int _strspn(char *s, char *accept);
 char *_strstr(char *haystack, char *needle);
 void __enter(char *, char *, char *, const char *);
 
-/*Environ funct*/
+/*environ funct*/
 char *_getenv(char *var);
-int _env(cmd_t);
+int _env(cmand_t);
 int we_setenv(const char *, const char *, int);
-int non_interactive(char **buffer, size_t *n, FILE *file, cmd_t);
-int execute(cmd_t);
+int non_interactive(char **buffer, size_t *n, FILE *file, cmand_t);
+int __execute__(cmand_t);
 
 #endif /* SIMPLE_SHELL */
 

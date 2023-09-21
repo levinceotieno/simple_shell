@@ -77,9 +77,7 @@ for (; *src != '\0'; dest++, src++)
 *dest = '\0';
 return (p_dest);/* returns address of the resulting string */
 }
-#include <string.h>
-#include <limits.h>
-#include <stdlib.h>
+
 /**
  * _strdup - returns pointer to a copy of str
  * @str: string to be copied
@@ -88,25 +86,26 @@ return (p_dest);/* returns address of the resulting string */
 
 char *_strdup(char *str)
 {
-	unsigned int l_str = 0; /* length of string*/
-	char *copy;
-	unsigned int i = 0;
+unsigned int l_str = 0;
+char *copy;
+unsigned int i = 0;
 
-	if (str == NULL)
-		return (NULL);
-	l_str = _strlen(str);
-	copy = (char *)malloc((sizeof(char) * (l_str + 1)));
-	if (copy == NULL)
-		return (NULL);
-	while (1)
-	{
-		if (i == l_str + 1)
-		{
-			copy[i] = '\0';
-			break;
-		}
-		copy[i] = *(str + i);
-		i++;
-	}
-	return (copy);
+if (str == NULL)
+return (NULL);
+l_str = _strlen(str);
+copy = (char *)malloc((sizeof(char) * (l_str + 1)));
+if (copy == NULL)
+return (NULL);
+while (1)
+{
+if (i == l_str + 1)
+{
+copy[i] = '\0';
+break;
 }
+copy[i] = *(str + i);
+i++;
+}
+return (copy);
+}
+

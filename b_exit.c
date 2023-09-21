@@ -4,7 +4,7 @@
  * @varComnd: command variables
  * Return: status
  */
-int __exit(cmd_t varComnd)
+int __exit(cmand_t varComnd)
 {
 int trueNum(char *string);
 char error_msg[] = "Illegal number: ";
@@ -16,7 +16,7 @@ if (trueNum(varComnd.cmd[1]))
 exit_status = _atoi(varComnd.cmd[1]);
 if (exit_status < 0)
 {
-random_prnt(varComnd.cmd_no, varComnd.prg_name,
+random_prnt(varComnd.cmand_no, varComnd.f_name,
 varComnd.cmd[0], error_msg);
 _puts(varComnd.cmd[1], STDERR_FILENO);
 _puts("\n", STDERR_FILENO);
@@ -30,7 +30,7 @@ exit(exit_status);
 }
 else
 {
-random_prnt(varComnd.cmd_no, varComnd.prg_name,
+random_prnt(varComnd.cmand_no, varComnd.f_name,
 varComnd.cmd[0], error_msg);
 _puts(varComnd.cmd[1], STDERR_FILENO);
 _puts("\n", STDERR_FILENO);

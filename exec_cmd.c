@@ -1,12 +1,12 @@
 #include "shell.h"
 
 /**
- * run_cmd - executes command based on arguments passed
+ * run_cmd - __execute__s command based on arguments passed
  * @varComnd: struct of command variables
  * Return: status
  */
 
-int run_cmd(cmd_t varComnd)
+int run_cmd(cmand_t varComnd)
 {
 pid_t child;
 char *_command;
@@ -15,7 +15,7 @@ _command = _which(varComnd.cmd[0]);
 
 if (_command == NULL)
 {
-random_prnt(varComnd.cmd_no, varComnd.prg_name, varComnd.cmd[0],
+random_prnt(varComnd.cmand_no, varComnd.f_name, varComnd.cmd[0],
 "not found\n");
 varComnd.status = 127;
 return (1);
@@ -34,7 +34,7 @@ if (child == 0)
 st = execve(_command, varComnd.cmd, varComnd.env);
 if (st == -1)
 {
-random_prnt(varComnd.cmd_no, varComnd.prg_name, varComnd.cmd[0],
+random_prnt(varComnd.cmand_no, varComnd.f_name, varComnd.cmd[0],
 strerror(errno));
 }
 }
@@ -58,7 +58,7 @@ return (WEXITSTATUS(varComnd.status));
  * Return: status
  */
 
-int non_interactive(char **buffer, size_t *n, FILE *file, cmd_t varComnd)
+int non_interactive(char **buffer, size_t *n, FILE *file, cmand_t varComnd)
 {
 	int status = 0;
 
@@ -73,8 +73,8 @@ int non_interactive(char **buffer, size_t *n, FILE *file, cmd_t varComnd)
 			perror("tokenize failed");
 			exit(1);
 		}
-		varComnd.cmd_no += 1;
-		status = execute(varComnd);
+		varComnd.cmand_no += 1;
+		status = __execute__(varComnd);
 		varComnd.status = status;
 	}
 	free(*buffer);

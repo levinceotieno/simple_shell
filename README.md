@@ -1,6 +1,6 @@
 Project Description: Building A Simple Shell
 
-This collaborative project involves the development of a basic yet functional shell that possess the behavior of a standard command-line interface. This simple shell will serves as an interactive environment where users can execute various commands to interact with the system.
+This collaborative project involves the development of a basic yet functional shell that possess the behavior of a standard command-line interface. This simple shell will serves as an interactive environment where users can __execute__ various commands to interact with the system.
 
 Key Features:
 
