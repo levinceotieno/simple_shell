@@ -80,8 +80,11 @@ typedef struct infoGetway
 	int linecount_flag;
 	char *path;
 	char **cmd_buffa;
-	int env_changed;                                                              int status;
-	list_t *env;                                                                  list_t *history;                                                              list_t *alias;
+	int env_changed;
+	int status;
+	list_t *env;
+	list_t *history;
+	list_t *alias;
 	char **environ;
 	int buffaferType;
 	int argc;
@@ -90,7 +93,7 @@ typedef struct infoGetway
 
 #define INITIALDATA \
 {NULL, NULL, NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, \
- 0, 0, 0}
+0, 0, 0}
 
 /**
  * struct builtin - contains a builtin str & related function
@@ -201,7 +204,8 @@ int __envList(info_t *);
 
 /* vars.c */
 int tag_c(info_t *, char *, size_t *);
-void chaintag(info_t *, char *, size_t *, size_t, size_t);                    int alternativeAlias(info_t *);
+void chaintag(info_t *, char *, size_t *, size_t, size_t);
+int alternativeAlias(info_t *);
 int alternativeVar(info_t *);
 int alternativeStr(char **, char *);
 

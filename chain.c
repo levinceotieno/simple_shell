@@ -15,7 +15,8 @@ if (info->buffaferType == CMD_AND)
 {
 if (info->status)
 {
-buf[i] = 0;                                                                   y = len;
+buf[i] = 0;
+y = len;
 }
 }
 if (info->buffaferType == CMDOR_)

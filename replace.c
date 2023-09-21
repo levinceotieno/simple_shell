@@ -1,7 +1,7 @@
 #include "shell.h"
 /**
  * alternativeAlias - replaces a cmd with its corresponding alias if available.
- * @informat: Pointer to the `inform_t` struct.
+ * @info: Pointer to the `inform_t` struct.
  * Return: 1 if an alias is replaced, 0  no alias found.
  */
 int alternativeAlias(info_t *info)
