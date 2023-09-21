@@ -16,7 +16,7 @@ int we_setenv(const char *name, const char *value, int overwrite)
 
 	variable = malloc(sizeof(char) * (len_value + len_name + 2));
 	if (variable)
-		join(variable, (char *)name, (char *)value, "=");
+		__enter(variable, (char *)name, (char *)value, "=");
 	else
 	{
 		free(variable);

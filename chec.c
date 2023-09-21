@@ -26,7 +26,7 @@ path_token != NULL; path_token = strtok(NULL, ":"))
 {
 dir_length = _strlen(path_token);
 file_path = malloc(command_length + dir_length + 2);
-join(file_path, path_token, command, "/");
+__enter(file_path, path_token, command, "/");
 if (stat(file_path, &buffer) == 0)
 {
 free(path_copy);

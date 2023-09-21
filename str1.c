@@ -77,14 +77,14 @@ char *_strstr(char *haystack, char *needle)
 }
 
 /**
- * join - joins two strings, a delimiter and a null byte
+ * __enter - __enters two strings, a delimiter and a null byte
  * @str1: lead string
  * @str2: trailing string
  * @delim: delimiter
  * @container: destination
  */
 
-void join(char *container, char *str1, char *str2, const char *delim)
+void __enter(char *container, char *str1, char *str2, const char *delim)
 {
 	_strcpy(container, str1);
 	_strcat(container, (char *)delim);

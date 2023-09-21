@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * tokenize - tokenizes a stream of characters
+ * tokenize - the funct tokenize chars
  * @str: string to tokenize
  * @delim: delimiter
  * Return: array to tokens

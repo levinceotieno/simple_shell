@@ -79,7 +79,7 @@ int _putchar(char c);
 int _puts(char *c, int fd);
 unsigned int _strspn(char *s, char *accept);
 char *_strstr(char *haystack, char *needle);
-void join(char *, char *, char *, const char *);
+void __enter(char *, char *, char *, const char *);
 
 /*Environ funct*/
 char *_getenv(char *var);
