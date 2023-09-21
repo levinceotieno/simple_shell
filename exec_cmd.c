@@ -15,7 +15,7 @@ _command = _which(varComnd.cmd[0]);
 
 if (_command == NULL)
 {
-printMsg(varComnd.cmd_no, varComnd.prg_name, varComnd.cmd[0],
+random_prnt(varComnd.cmd_no, varComnd.prg_name, varComnd.cmd[0],
 "not found\n");
 varComnd.status = 127;
 return (1);
@@ -34,7 +34,7 @@ if (child == 0)
 st = execve(_command, varComnd.cmd, varComnd.env);
 if (st == -1)
 {
-printMsg(varComnd.cmd_no, varComnd.prg_name, varComnd.cmd[0],
+random_prnt(varComnd.cmd_no, varComnd.prg_name, varComnd.cmd[0],
 strerror(errno));
 }
 }

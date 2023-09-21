@@ -73,7 +73,7 @@ if (trueNum(varComnd.cmd[1]))
 exit_status = _atoi(varComnd.cmd[1]);
 if (exit_status < 0)
 {
-printMsg(varComnd.cmd_no, varComnd.prg_name, varComnd.cmd[0], error_msg);
+random_prnt(varComnd.cmd_no, varComnd.prg_name, varComnd.cmd[0], error_msg);
 _puts(varComnd.cmd[1], STDERR_FILENO);
 _puts("\n", STDERR_FILENO);
 return (2);
@@ -86,7 +86,7 @@ exit(exit_status);
 }
 else
 {
-printMsg(varComnd.cmd_no, varComnd.prg_name, varComnd.cmd[0], error_msg);
+random_prnt(varComnd.cmd_no, varComnd.prg_name, varComnd.cmd[0], error_msg);
 _puts(varComnd.cmd[1], STDERR_FILENO);
 _puts("\n", STDERR_FILENO);
 return (2);
