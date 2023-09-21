@@ -11,6 +11,7 @@
 #include <errno.h>
 #include <fcntl.h>
 #include "print.h"
+#include <limits.h>
 
 /* macros*/
 #define PROMPT "$ "

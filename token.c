@@ -32,14 +32,13 @@ char **tokenize(char *str, const char *delim)
 	if (words == NULL)
 		return (NULL);
 	token = strtok(cpy, delim);
-	while (token != NULL)
+	for (i = 0; i < num_tokens - 1; i++)
 	{
 		if (token[0] == '#')
 			break;
 		words[i] = malloc(sizeof(char) * strlen(token) + 1);
 		strcpy(words[i], token);
 		token = strtok(NULL, delim);
-		i++;
 	}
 	words[i] = NULL;
 	free(cpy);

@@ -12,7 +12,6 @@ unsigned int _strspn(char *s, char *accept)
 	int c = 0;
 	int accept_chars[256] = {0};
 
-	/*Mark characters from 'accept' as present in the accept_chars array*/
 	for (j = 0; accept[j] != '\0'; j++)
 	{
 		accept_chars[(unsigned char)accept[j]] = 1;
@@ -23,15 +22,15 @@ unsigned int _strspn(char *s, char *accept)
 		if (accept_chars[(unsigned char)s[i]])
 			c++;
 		else
-			break;/*Stop counting when a non-matching character is found*/
+			break;
 	}
 	return (c);
 }
 
 /**
- * _atoi - converts a string to an integer
+ * _atoi - converts a string to an int
  * @str: the string to convert
- * Return: converted string else 0 if no number if found
+ * Return: converted string
  */
 
 int _atoi(char *str)
@@ -61,7 +60,7 @@ int _atoi(char *str)
  * _strstr - locates the first matching substring of accept in str
  * @haystack: string to be searched
  * @needle: refrence string
- * Return: pointer to the first character of the matched string
+ * Return: ptr to the 1st char of the matched str
  */
 
 char *_strstr(char *haystack, char *needle)

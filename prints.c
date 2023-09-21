@@ -1,6 +1,4 @@
 #include "shell.h"
-#include <unistd.h>
-#include <limits.h>
 
 /**
  * intprnt - prints integers
@@ -32,20 +30,20 @@ int intprnt(int num)
 /**
  * _puts - prints a string to file
  * @str: string
- * @fd: file descriptor
- * Return: number of character printed
+ * @fd: file descript
+ * Return: numb of cgar printed
  */
 
 int _puts(char *str, int fd)
 {
-	int l = 0;
+	int y = 0;
 
 	if (str == NULL)
 		str = "(null)";
 	if (*str == '\0')
 		return (0);
-	l = write(fd, str, _strlen(str));
-	return (l);
+	y = write(fd, str, _strlen(str));
+	return (y);
 }
 
 
