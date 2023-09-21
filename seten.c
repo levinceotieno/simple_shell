@@ -8,22 +8,22 @@
  */
 int we_setenv(const char *name, const char *value, int overwrite)
 {
-char *variable;
+char *var;
 int len_name = _strlen((char *)name),
 len_value = _strlen((char *)value), i;
-variable = malloc(sizeof(char) * (len_value + len_name + 2));
-if (!variable)
+var = malloc(sizeof(char) * (len_value + len_name + 2));
+if (!var)
 {
-free(variable);
+free(var);
 perror("Not enough memory");
 return (1);
 }
-__enter(variable, (char *)name, (char *)value, "=");
+__enter(var, (char *)name, (char *)value, "=");
 if (!_getenv((char *)name))
 {
 for (i = 0; environ[i]; i++)
 continue;
-environ[i] = variable;
+environ[i] = var;
 }
 else if (overwrite)
 {
@@ -31,7 +31,7 @@ for (i = 0; environ[i]; i++)
 {
 if (_strstr(environ[i], (char *)name) == environ[i])
 {
-environ[i] = variable;
+environ[i] = var;
 }
 }
 }

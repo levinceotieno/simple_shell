@@ -5,26 +5,24 @@
  * @num: number
  * Return: lenght of integer
  */
-
 int intprnt(int num)
 {
-	int len = 0;
+int len = 0;
+if (num == (INT_MIN))
+return (_puts("-2147483648", STDERR_FILENO));
+if (num < 0)
+{
+len += _putchar('-');
+num = -num;
+}
 
-	if (num == (INT_MIN))
-		return (_puts("-2147483648", STDERR_FILENO));
-	if (num < 0)
-	{
-		len += _putchar('-');
-		num = -num;
-	}
-
-	if (num >= 10)
-	{
-		len += (intprnt(num / 10));
-	}
-	_putchar(num % 10 + '0');
-	len++;
-	return (len);
+if (num >= 10)
+{
+len += (intprnt(num / 10));
+}
+_putchar(num % 10 + '0');
+len++;
+return (len);
 }
 
 /**
@@ -50,24 +48,25 @@ return (y);
  */
 int _putchar(char c)
 {
-	return (write(STDERR_FILENO, &c, 1));
+return (write(STDERR_FILENO, &c, 1));
 }
 
 /**
- * random_prnt - prints error message
- * @command_no: command id
+ * random_prnt - prints error messag
+ * @command_no: command address
  * @program_name: executable name
- * @command: command entered
+ * @command: the command
  * @error_: error message
  */
 void random_prnt(int command_no, char *program_name,
 char *command, char *error_)
 {
-	_puts(program_name, STDERR_FILENO);
-	_puts(": ", STDERR_FILENO);
-	intprnt(command_no);
-	_puts(": ", STDERR_FILENO);
-	_puts(command, STDERR_FILENO);
-	_puts(": ", STDERR_FILENO);
-	_puts(error_, STDERR_FILENO);
+_puts(program_name, STDERR_FILENO);
+_puts(": ", STDERR_FILENO);
+intprnt(command_no);
+_puts(": ", STDERR_FILENO);
+_puts(command, STDERR_FILENO);
+_puts(": ", STDERR_FILENO);
+_puts(error_, STDERR_FILENO);
 }
+

@@ -1,11 +1,10 @@
 #include "shell.h"
 
 /**
- * cd_only - function to change current working directory
+ * cd_only - function to change pwd
  * @varComnd: command variables
  * Return: status
  */
-
 int cd_only(cmand_t varComnd)
 {
 int status = 0;
@@ -26,7 +25,7 @@ write(STDOUT_FILENO, "\n", 1);
 st = chdir((const char *)dir_name);
 }
 st = chdir((const char *)dir_name);
-/* checks for permissions or existence of directory */
+/* looks 4 permissions */
 if (st == -1)
 {
 dprintf(STDERR_FILENO, "%s: %d: cd: can't cd to %s\n",
@@ -42,7 +41,7 @@ return (status);
 /**
  * trueNum - checks a string if it contains a non-int character
  * @string: string to check
- * Return: 1 if true, 0 otherwise
+ * Return: 1 true, else 0
  */
 
 int trueNum(char *string)

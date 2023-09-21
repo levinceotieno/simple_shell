@@ -1,5 +1,4 @@
 #include "shell.h"
-
 /**
  * run_cmd - __execute__s command based on arguments passed
  * @varComnd: struct of command variables
@@ -57,26 +56,25 @@ return (WEXITSTATUS(varComnd.status));
  * @varComnd: command variables
  * Return: status
  */
-
 int non_interactive(char **buffer, size_t *n, FILE *file, cmand_t varComnd)
 {
-	int status = 0;
-
-	while (getline(buffer, n, file) != -1)
-	{
-		if (_strlen(*buffer) <= 1 || _strspn(*buffer, " \t\n")
-				== (size_t)_strlen(*buffer) || *(buffer[0]) == '#')
-			continue;
-		varComnd.cmd = tokenize(*buffer, DELIMITER);
-		if (varComnd.cmd == NULL)
-		{
-			perror("tokenize failed");
-			exit(1);
-		}
-		varComnd.cmand_no += 1;
-		status = __execute__(varComnd);
-		varComnd.status = status;
-	}
-	free(*buffer);
-	return (status);
+int status = 0;
+while (getline(buffer, n, file) != -1)
+{
+if (_strlen(*buffer) <= 1 || _strspn(*buffer, " \t\n")
+== (size_t)_strlen(*buffer) || *(buffer[0]) == '#')
+continue;
+varComnd.cmd = tokenize(*buffer, _DELIM);
+if (varComnd.cmd == NULL)
+{
+perror("tokenize failed");
+exit(1);
 }
+varComnd.cmand_no += 1;
+status = __execute__(varComnd);
+varComnd.status = status;
+}
+free(*buffer);
+return (status);
+}
+

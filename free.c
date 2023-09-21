@@ -15,3 +15,4 @@ free(*grid);
 }
 free(grid_cpy);
 }
+
