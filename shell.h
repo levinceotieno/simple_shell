@@ -16,11 +16,12 @@
 #define READ_BUF_SIZE 1024
 #define PRINTBUFF_SIZE 1024
 #define FLSHBUFF -1
-/* chaining cmd */
-#define CMD_NORM	0
-#define CMDOR_		1
-#define CMD_AND		2
-#define CMDCHAINN_	3
+
+/* other def includes */
+#define RTINCMD 0
+#define CMDOR_ 1
+#define CMD_AND 2
+#define CMDCHAINN_ 3
 /* converting number function */
 #define LOWERCASE_	1
 #define UNSIGNED__	2
@@ -72,28 +73,24 @@ typedef struct infoGetway
 {
 	char *arg;
 	char **argv;
-	char *path;
-	int argc;
+	char *fname;
+	int readfd;
 	unsigned int line_count;
 	int err_num;
 	int linecount_flag;
-	char *fname;
-	list_t *env;
-	list_t *history;
-	list_t *alias;
-	char **environ;
-	int env_changed;
-	int status;
-
+	char *path;
 	char **cmd_buffa;
+	int env_changed;                                                              int status;
+	list_t *env;                                                                  list_t *history;                                                              list_t *alias;
+	char **environ;
 	int buffaferType;
-	int readfd;
+	int argc;
 	int histcount;
 } info_t;
 
 #define INITIALDATA \
-{NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, \
-		0, 0, 0}
+{NULL, NULL, NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, \
+ 0, 0, 0}
 
 /**
  * struct builtin - contains a builtin str & related function
@@ -121,6 +118,11 @@ char *fi_ndpath(info_t *, char *, char *);
 /* loop_ex.c */
 int loop_ex(char **);
 
+/* exit.c */
+char *_strncpy(char *, char *, int);
+char *_strncat(char *, char *, int);
+char *_strchr(char *, char);
+
 /* errors.c */
 void _eputs(char *);
 int _eputchar(char);
@@ -138,11 +140,6 @@ char *_strcpy(char *, char *);
 char *_strdup(const char *);
 void _puts(char *);
 int _putchar(char);
-
-/* exit.c */
-char *_strncpy(char *, char *, int);
-char *_strncat(char *, char *, int);
-char *_strchr(char *, char);
 
 /* token.c */
 char **tokstr(char *, char *);
@@ -168,6 +165,13 @@ void print_error(info_t *, char *);
 int print_d(int, int);
 char *convert_number(long int, int, int);
 void remove_comments(char *);
+
+/* history.c */
+char *histopast_file(info_t *info);
+int past_write(info_t *info);
+int readH(info_t *info);
+int creatH(info_t *info, char *buffa, int linecount);
+int renumH(info_t *info);
 
 /* builtin.c */
 int check_exit(info_t *);
@@ -195,17 +199,16 @@ int __setenv(info_t *);
 int __unsetevv(info_t *);
 int __envList(info_t *);
 
+/* vars.c */
+int tag_c(info_t *, char *, size_t *);
+void chaintag(info_t *, char *, size_t *, size_t, size_t);                    int alternativeAlias(info_t *);
+int alternativeVar(info_t *);
+int alternativeStr(char **, char *);
+
 /* getenv.c */
 char **get_environ(info_t *);
 int _unsetenv(info_t *, char *);
 int _setenv(info_t *, char *, char *);
-
-/* history.c */
-char *histopast_file(info_t *info);
-int past_write(info_t *info);
-int readH(info_t *info);
-int creatH(info_t *info, char *buffa, int linecount);
-int renumH(info_t *info);
 
 /* lists.c */
 list_t *add_node(list_t **, const char *, int);
@@ -224,13 +227,6 @@ size_t print_list(const list_t *);
 /* list4.c */
 list_t *node_beginWth(list_t *, char *, char);
 ssize_t nodeIndex(list_t *, list_t *);
-
-/* vars.c */
-int tag_c(info_t *, char *, size_t *);
-void check_chain(info_t *, char *, size_t *, size_t, size_t);
-int replace_alias(info_t *);
-int replace_vars(info_t *);
-int replace_string(char **, char *);
 
 #endif /* SIMPLE_SHELL */
 

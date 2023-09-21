@@ -39,8 +39,8 @@ while (info->argv && info->argv[i])
 i++;
 }
 info->argc = i;
-replace_alias(info);
-replace_vars(info);
+alternativeAlias(info);
+alternativeVar(info);
 }
 }
 

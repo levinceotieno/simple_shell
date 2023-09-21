@@ -60,7 +60,7 @@ if (len)
 {
 j = i;
 p = buffa + i; /* get pointer for return */
-check_chain(info, buffa, &j, i, len);
+chaintag(info, buffa, &j, i, len);
 while (j < len)
 {
 if (tag_c(info, buffa, &j))
@@ -72,7 +72,7 @@ i = j + 1; /* increment past nulled ';'' */
 if (i >= len)
 {
 i = len = 0; /* reset position and length */
-info->buffaferType = CMD_NORM;
+info->buffaferType = RTINCMD;
 }
 *buffa_p = p; /* pass back pointer to current command position */
 return (_strlen(p));
