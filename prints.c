@@ -60,7 +60,8 @@ int _putchar(char c)
  * @command: command entered
  * @error_: error message
  */
-void random_prnt(int command_no, char *program_name, char *command, char *error_)
+void random_prnt(int command_no, char *program_name,
+char *command, char *error_)
 {
 	_puts(program_name, STDERR_FILENO);
 	_puts(": ", STDERR_FILENO);
