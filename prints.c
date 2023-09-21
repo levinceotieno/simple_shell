@@ -31,21 +31,15 @@ int intprnt(int num)
  * _puts - prints a string to file
  * @str: string
  * @fd: file descript
- * Return: numb of cgar printed
+ * Return: numb of char printed
  */
-
 int _puts(char *str, int fd)
 {
-	int y = 0;
-
-	if (str == NULL)
-		str = "(null)";
-	if (*str == '\0')
-		return (0);
-	y = write(fd, str, _strlen(str));
-	return (y);
+int y = 0;
+str = (str == NULL) ? "(null)" : str;
+y = (*str == '\0') ? 0 : write(fd, str, _strlen(str));
+return (y);
 }
-
 
 /**
  * _putchar - writes character c to stdout
