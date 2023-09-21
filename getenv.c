@@ -1,83 +1,49 @@
 #include "shell.h"
 
 /**
- * get_environ - returns the string array copy of our environ
- * @info: Structure containing potential arguments
- * Return: 0 (Success)
+ * _getenv - searches for a variable in the environment variables
+ * @var: variable to look for
+ * Return: pointer to variable (string)
  */
-char **get_environ(info_t *info)
+
+char *_getenv(char *var)
 {
-if (!info->environ || info->env_changed)
-{
-info->environ = str_listed(info->env);
-info->env_changed = 0;
-}
-return (info->environ);
+	char *result;
+	char **environment = environ;
+	int i = 0, len_var = _strlen(var);
+
+	while (1)
+	{
+		if (environment[i] == NULL)
+			break;
+		result = _strstr(environment[i], var);
+		/* checks if the current string is the variable*/
+		if (result != NULL && result[len_var] == '=' && result ==
+				environment[i])
+			return (result + len_var + 1);
+		i++;
+	}
+	return (NULL);
 }
 
 /**
- * _unsetenv - remove an environment variable
- * @info: Structure containing potential arguments
- *  Return: 1 on delete, else 0
- * @var: the string env var property
+ * _env - prints the environment variables of an environment
+ * @varComnd: command variables
+ * Return: returns exit_status
  */
-int _unsetenv(info_t *info, char *var)
-{
-list_t *node = info->env;
-size_t i = 0;
-char *p;
-if (!node || !var)
-return (0);
-do {
-p = beginWth(node->str, var);
-if (p && *p == '=')
-{
-info->env_changed = remov_nodeAtIndex(&(info->env), i);
-i = 0;
-node = info->env;
-continue;
-}
-node = node->next;
-i++;
-} while (node);
-return (info->env_changed);
-}
 
-/**
- * _setenv - Initialize a new environment variable,
- *             or modify an existing one
- * @info: the struct containing potential arguments
- * @var: str env var property
- * @value: str env var value
- *  Return: 0 (Success)
- */
-int _setenv(info_t *info, char *var, char *value)
+int _env(cmd_t varComnd)
 {
-char *buffa = NULL;
-list_t *node;
-char *p;
-if (!var || !value)
-return (0);
-buffa = malloc(_strlen(var) + _strlen(value) + 2);
-if (!buffa)
-return (1);
-_strcpy(buffa, var);
-_strcat(buffa, "=");
-_strcat(buffa, value);
-node = info->env;
-do {
-p = beginWth(node->str, var);
-if (p && *p == '=')
-{
-free(node->str);
-node->str = buffa;
-info->env_changed = 1;
-return (0);
-}
-node = node->next;
-} while (node);
-plusNode_end(&(info->env), buffa, 0);
-free(buffa);
-info->env_changed = 1;
-return (0);
+	int i = 0;
+
+	while (varComnd.env[i])
+	{
+		write(STDOUT_FILENO, varComnd.env[i], _strlen(varComnd.env[i]));
+		write(STDOUT_FILENO, "\n", 1);
+		i++;
+	}
+
+	if (varComnd.cmd == NULL)
+		return (2);
+	return (0);
 }

@@ -1,71 +1,112 @@
 #include "shell.h"
-
 /**
- * _strlen - returns the length of a string
- * @s: the str being checked length
- * Return: len of string
+ * _strlen - prints the number of characters of a string
+ * @s: string
+ * Return: length of s
  */
 int _strlen(char *s)
 {
-int i;
-if (!s)
-return (0);
-for (i = 0; s[i] != '\0'; i++)
-{
-}
-return (i);
-}
+int len = 0;
 
+for (; *s != '\0'; s++)
+{
+len++;
+}
+return (len);
+}
 /**
- * _strcmp - performs lexicogarphic comparison of two strangs.
- * @s1: the first strang
- * @s2: the second strang
- *
- * Return: negative if s1 < s2, positive if s1 > s2, zero if s1 == s2
+ * _strcpy - copies a string to another string
+ * @dest: destination of copied string
+ * @src: string to be copied
+ * Return: pointer to dest
  */
+
+char *_strcpy(char *dest, char *src)
+{
+	char *r_dest = dest;
+
+	while (*src != '\0')
+	{
+		*dest = *src;
+		dest++;
+		src++;
+	}
+	*dest = '\0';
+	return (r_dest);
+}
+/**
+ * _strcmp - Compares two strings
+ * @s1: first string
+ * @s2: second string
+ * Return: string difference
+ */
+
 int _strcmp(char *s1, char *s2)
 {
-for (; *s1 && *s2; s1++, s2++)
+char *y_s1 = s1;
+char *y_s2 = s2;
+for (; *y_s1 != '\0' && *y_s2 != '\0'; y_s1++, y_s2++)
 {
-if (*s1 != *s2)
-return (*s1 - *s2);
+if (*y_s1 != *y_s2)
+{
+return (*y_s1 - *y_s2);
 }
-if (*s1 == *s2)
+}
+if (*s1 == '\0' || *s2 == '\0')
 return (0);
-else
-return (*s1 < *s2 ? -1 : 1);
+return (*y_s1 - *y_s2);
 }
 
 /**
- * beginWth - checks if needle starts with haystack
- * @haystack: string to search
- * @needle: sub_string 2 find
- * Return: address of next char
+ * _strcat - concatenates two strings
+ * @src: source to be appended
+ * @dest : destination string.
+ * Return: pointer to first element to dest.
  */
-char *beginWth(const char *haystack, const char *needle)
-{
-for (; *needle; needle++, haystack++)
-{
-if (*needle++ != *haystack++)
-return (NULL);
-}
-return ((char *)haystack);
-}
 
-/**
- * _strcat - concat 2 strs
- * @dest: destination buffafer
- * @src: source buffafer
- * Return: ptr 2 dest buffafer
- */
 char *_strcat(char *dest, char *src)
 {
-char *j = dest;
-while (*dest)
-dest++;
-while (*src)
-*dest++ = *src++;
-*dest = *src;
-return (j);
+char *p_dest = dest;
+for (; *dest != '\0'; dest++)
+{
 }
+for (; *src != '\0'; dest++, src++)
+{
+*dest = *src;
+}
+*dest = '\0';
+return (p_dest);/* returns address of the resulting string */
+}
+#include <string.h>
+#include <limits.h>
+#include <stdlib.h>
+/**
+ * _strdup - returns pointer to a copy of str
+ * @str: string to be copied
+ * Return: pointer to copy
+ */
 
+char *_strdup(char *str)
+{
+	unsigned int l_str = 0; /* length of string*/
+	char *copy;
+	unsigned int i = 0;
+
+	if (str == NULL)
+		return (NULL);
+	l_str = _strlen(str);
+	copy = (char *)malloc((sizeof(char) * (l_str + 1)));
+	if (copy == NULL)
+		return (NULL);
+	while (1)
+	{
+		if (i == l_str + 1)
+		{
+			copy[i] = '\0';
+			break;
+		}
+		copy[i] = *(str + i);
+		i++;
+	}
+	return (copy);
+}

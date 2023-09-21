@@ -1,75 +1,94 @@
 #include "shell.h"
-
 /**
- * _strcpy - copying str
- * @dest: destination
- * @src: source
- * Return: ptr 2 dest
+ * _strspn - strspn
+ * @s: string being checked
+ * @accept : reference string
+ * Return: length of char of `accept` contained in `s`
  */
-char *_strcpy(char *dest, char *src)
+unsigned int _strspn(char *s, char *accept)
 {
-int i = 0;
-if (dest == src || src == 0)
-return (dest);
-for (i = 0; src[i]; i++)
-dest[i] = src[i];
-dest[i] = 0;
-return (dest);
-}
+	int i;
+	int j;
+	int c = 0;
+	int accept_chars[256] = {0};
 
-/**
- * _strdup - duplicates str
- * @str: str 2 duplicate
- * Return: ptr 2 duplicated str
- */
-char *_strdup(const char *str)
-{
-int length = 0;
-char *ret;
-if (str == NULL)
-return (NULL);
-while (*str++)
-length++;
-ret = malloc(sizeof(char) * (length + 1));
-if (!ret)
-return (NULL);
-for (length++; length--;)
-ret[length] = *--str;
-return (ret);
+	/*Mark characters from 'accept' as present in the accept_chars array*/
+	for (j = 0; accept[j] != '\0'; j++)
+	{
+		accept_chars[(unsigned char)accept[j]] = 1;
+	}
+
+	for (i = 0; s[i] != '\0'; i++)
+	{
+		if (accept_chars[(unsigned char)s[i]])
+			c++;
+		else
+			break;/*Stop counting when a non-matching character is found*/
+	}
+	return (c);
 }
 
 /**
- * _puts - prints the input string
- * @str: string
- * Return: void
+ * _atoi - converts a string to an integer
+ * @str: the string to convert
+ * Return: converted string else 0 if no number if found
  */
-void _puts(char *str)
+
+int _atoi(char *str)
 {
-int i;
-if (!str)
-return;
-for (i = 0; str[i] != '\0'; i++)
-{
-_putchar(str[i]);
-}
+	int i = 0, sign = 1, flag = 0;
+	int result = 0;
+
+	for (i = 0; str[i] != '\0' && flag != -1; i++)
+	{
+		if (str[i] == '-')
+			sign *= -1;
+		if (_isdigit(str[i]))
+		{
+			flag = 1;
+			result *= 10;
+			result += (str[i] - '0');
+		}
+		else if (flag == 1)
+			flag = -1;
+	}
+	if (sign == -1)
+		return (-1 * result);
+	return (result);
 }
 
 /**
- * _putchar - prints the character c to stdout
- * @c: character
- * Return: 1 (Success)
+ * _strstr - locates the first matching substring of accept in str
+ * @haystack: string to be searched
+ * @needle: refrence string
+ * Return: pointer to the first character of the matched string
  */
-int _putchar(char c)
+
+char *_strstr(char *haystack, char *needle)
 {
-static int i;
-static char buffa[PRINTBUFF_SIZE];
-if (c == (char)FLSHBUFF || i >= PRINTBUFF_SIZE)
-{
-write(1, buffa, i);
-i = 0;
-}
-if (c != (char)FLSHBUFF)
-buffa[i++] = c;
-return (1);
+	if (haystack == NULL || *needle == '\0')
+		return (haystack);
+	while (*haystack != 0)
+	{
+		if ((*haystack == *needle) && *(haystack + 1) == *(needle + 1))
+			return (haystack);
+		haystack++;
+	}
+	return (((void *) 0));
 }
 
+/**
+ * join - joins two strings, a delimiter and a null byte
+ * @str1: lead string
+ * @str2: trailing string
+ * @delim: delimiter
+ * @container: destination
+ */
+
+void join(char *container, char *str1, char *str2, const char *delim)
+{
+	_strcpy(container, str1);
+	_strcat(container, (char *)delim);
+	_strcat(container, str2);
+	_strcat(container, "\0");
+}
